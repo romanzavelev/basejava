@@ -5,22 +5,48 @@ import java.util.Arrays;
  */
 public class ArrayStorage {
     Resume[] storage = new Resume[10000];
-    int lastIndex = -1;
+    int size = 0;
 
     void clear() {
-        for (int i = 0; i <= lastIndex; i++) {
+       // Arrays.fill(storage, null);
+        for (int i = 0; i <= size - 1; i++) {
            storage[i] = null;
         }
-        lastIndex = -1;
+        size = 0;
     }
 
     void save(Resume r) {
-        lastIndex++;
-        storage[lastIndex] = r;
+        if (size >= 10000) {
+            System.out.println("ERROR");
+            return;
+        }
+        if  (availableResume(r.getUuid())) {
+            System.out.println("ERROR");
+            return;
+        }
+        storage[size] = r;
+        size++;
+    }
+
+    void update(Resume r) {
+        String uuid = r.getUuid();
+        if  (! availableResume(uuid)) {
+            System.out.println("ERROR");
+            return;
+        }
+        for (int i = 0; i <= size - 1; i++) {
+            if (storage[i].uuid.equals(uuid)) {
+                storage[i] = r;
+            }
+        }
     }
 
     Resume get(String uuid) {
-        for (int i = 0; i <= lastIndex; i++) {
+        if  (! availableResume(uuid)) {
+            System.out.println("ERROR");
+            return null;
+        }
+        for (int i = 0; i <= size - 1; i++) {
             if (storage[i].uuid.equals(uuid)) {
                 return storage[i];
             }
@@ -29,14 +55,15 @@ public class ArrayStorage {
     }
 
     void delete(String uuid) {
-        for (int i = 0; i <= lastIndex; i++) {
+        if  (! availableResume(uuid)) {
+            System.out.println("ERROR");
+            return;
+        }
+        for (int i = 0; i <= size - 1; i++) {
             if (storage[i].uuid.equals(uuid)) {
-                storage[i] = null;
-                for (int j = i; j < lastIndex; j++) {
-                    storage[j] = storage[j + 1];
-                }
-                storage[lastIndex] = null;
-                lastIndex--;
+                storage[i] = storage[size - 1];
+                storage[size - 1] = null;
+                size--;
             }
         }
     }
@@ -45,10 +72,19 @@ public class ArrayStorage {
      * @return array, contains only Resumes in storage (without null)
      */
     Resume[] getAll() {
-        return Arrays.copyOf(storage, lastIndex + 1);
+        return Arrays.copyOf(storage, size);
     }
 
     int size() {
-        return lastIndex + 1;
+        return size;
+    }
+
+    private boolean availableResume(String uuid) {
+        for (int i = 0; i <= size - 1; i++) {
+            if (storage[i].uuid.equals(uuid)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
