@@ -8,46 +8,40 @@ import java.util.Arrays;
  * Array based storage for Resumes
  */
 public class ArrayStorage {
-    Resume[] storage = new Resume[10000];
-    int size = 0;
+    private Resume[] storage = new Resume[10_000];
+    private int size = 0;
 
     public void clear() {
-       // Arrays.fill(storage, null);
-        for (int i = 0; i <= size - 1; i++) {
-           storage[i] = null;
-        }
+        Arrays.fill(storage, null);
         size = 0;
     }
 
-    public void save(Resume r) {
-        if (size >= 10000) {
-            System.out.println("ERROR");
+    public void save(Resume resume) {
+        if (size >= storage.length) {
+            System.out.println("ERROR Массив переполнен");
             return;
         }
-        if  (availableResume(r.getUuid())) {
-            System.out.println("ERROR");
+        if  (availableResume(resume.getUuid(), true)) {
             return;
         }
-        storage[size] = r;
+        storage[size] = resume;
         size++;
     }
 
-    public void update(Resume r) {
-        String uuid = r.getUuid();
-        if  (! availableResume(uuid)) {
-            System.out.println("ERROR");
+    public void update(Resume resume) {
+        String uuid = resume.getUuid();
+        if  (! availableResume(uuid, false)) {
             return;
         }
         for (int i = 0; i <= size - 1; i++) {
             if (storage[i].getUuid().equals(uuid)) {
-                storage[i] = r;
+                storage[i] = resume;
             }
         }
     }
 
     public Resume get(String uuid) {
-        if  (! availableResume(uuid)) {
-            System.out.println("ERROR");
+        if  (! availableResume(uuid, false)) {
             return null;
         }
         for (int i = 0; i <= size - 1; i++) {
@@ -59,8 +53,7 @@ public class ArrayStorage {
     }
 
     public void delete(String uuid) {
-        if  (! availableResume(uuid)) {
-            System.out.println("ERROR");
+        if  (! availableResume(uuid, false)) {
             return;
         }
         for (int i = 0; i <= size - 1; i++) {
@@ -83,11 +76,17 @@ public class ArrayStorage {
         return size;
     }
 
-    private boolean availableResume(String uuid) {
+    private boolean availableResume(String uuid, Boolean sendError) {
         for (int i = 0; i <= size - 1; i++) {
             if (storage[i].getUuid().equals(uuid)) {
+                if (sendError) {
+                    System.out.println("ERROR Резюме с таким uuid уже существует");
+                }
                 return true;
             }
+        }
+        if (! sendError) {
+            System.out.println("ERROR Резюме с таким uuid не найдено");
         }
         return false;
     }
