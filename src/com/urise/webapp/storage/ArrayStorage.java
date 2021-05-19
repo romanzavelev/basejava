@@ -21,7 +21,7 @@ public class ArrayStorage {
             System.out.println("ERROR Массив переполнен");
             return;
         }
-        if  (availableResume(resume.getUuid(), true)) {
+        if (availableResume(resume.getUuid(), true)) {
             return;
         }
         storage[size] = resume;
@@ -30,7 +30,7 @@ public class ArrayStorage {
 
     public void update(Resume resume) {
         String uuid = resume.getUuid();
-        if  (! availableResume(uuid, false)) {
+        if (!availableResume(uuid, false)) {
             return;
         }
         for (int i = 0; i <= size - 1; i++) {
@@ -41,7 +41,7 @@ public class ArrayStorage {
     }
 
     public Resume get(String uuid) {
-        if  (! availableResume(uuid, false)) {
+        if (!availableResume(uuid, false)) {
             return null;
         }
         for (int i = 0; i <= size - 1; i++) {
@@ -53,7 +53,7 @@ public class ArrayStorage {
     }
 
     public void delete(String uuid) {
-        if  (! availableResume(uuid, false)) {
+        if (!availableResume(uuid, false)) {
             return;
         }
         for (int i = 0; i <= size - 1; i++) {
@@ -85,7 +85,7 @@ public class ArrayStorage {
                 return true;
             }
         }
-        if (! sendError) {
+        if (!sendError) {
             System.out.println("ERROR Резюме с таким uuid не найдено");
         }
         return false;
