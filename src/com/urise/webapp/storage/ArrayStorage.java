@@ -59,7 +59,7 @@ public class ArrayStorage {
     }
 
     /**
-     * @return array, contains only Resumes in storage (without null)
+     * @return array, contains only Resumes in storage (without null) _
      */
     public Resume[] getAll() {
         return Arrays.copyOf(storage, size);
