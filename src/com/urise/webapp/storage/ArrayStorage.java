@@ -21,7 +21,8 @@ public class ArrayStorage {
             System.out.println("ERROR Массив переполнен");
             return;
         }
-        if (availableResume(resume.getUuid(), true)) {
+        if (availableResume(resume.getUuid())) {
+            System.out.println("ERROR Резюме с таким uuid уже существует");
             return;
         }
         storage[size] = resume;
@@ -30,7 +31,8 @@ public class ArrayStorage {
 
     public void update(Resume resume) {
         String uuid = resume.getUuid();
-        if (!availableResume(uuid, false)) {
+        if (!availableResume(uuid)) {
+            System.out.println("ERROR Резюме с таким uuid не найдено");
             return;
         }
         for (int i = 0; i <= size - 1; i++) {
@@ -41,7 +43,8 @@ public class ArrayStorage {
     }
 
     public Resume get(String uuid) {
-        if (!availableResume(uuid, false)) {
+        if (!availableResume(uuid)) {
+            System.out.println("ERROR Резюме с таким uuid не найдено");
             return null;
         }
         for (int i = 0; i <= size - 1; i++) {
@@ -53,7 +56,8 @@ public class ArrayStorage {
     }
 
     public void delete(String uuid) {
-        if (!availableResume(uuid, false)) {
+        if (!availableResume(uuid)) {
+            System.out.println("ERROR Резюме с таким uuid не найдено");
             return;
         }
         for (int i = 0; i <= size - 1; i++) {
@@ -76,17 +80,11 @@ public class ArrayStorage {
         return size;
     }
 
-    private boolean availableResume(String uuid, Boolean sendError) {
+    private boolean availableResume(String uuid) {
         for (int i = 0; i <= size - 1; i++) {
             if (storage[i].getUuid().equals(uuid)) {
-                if (sendError) {
-                    System.out.println("ERROR Резюме с таким uuid уже существует");
-                }
                 return true;
             }
-        }
-        if (!sendError) {
-            System.out.println("ERROR Резюме с таким uuid не найдено");
         }
         return false;
     }
