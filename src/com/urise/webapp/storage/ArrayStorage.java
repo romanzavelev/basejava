@@ -9,10 +9,10 @@ import java.util.Arrays;
  */
 public class ArrayStorage {
     private Resume[] storage = new Resume[10_000];
-    private int size = 0;
+    private int size;
 
     public void clear() {
-        Arrays.fill(storage, 0, size - 1, null);
+        Arrays.fill(storage, 0, size, null);
         size = 0;
     }
 
@@ -21,7 +21,7 @@ public class ArrayStorage {
             System.out.println("ERROR Массив переполнен");
             return;
         }
-        if (getIndex(resume.getUuid()) == -1) {
+        if (getIndex(resume.getUuid()) != -1) {
             System.out.println("ERROR Резюме с таким uuid уже существует");
             return;
         }
@@ -70,7 +70,7 @@ public class ArrayStorage {
     }
 
     private int getIndex(String uuid) {
-        for (int i = 0; i <= size - 1; i++) {
+        for (int i = 0; i < size; i++) {
             if (storage[i].getUuid().equals(uuid)) {
                 return i;
             }
