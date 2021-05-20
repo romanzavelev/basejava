@@ -22,7 +22,7 @@ public class ArrayStorage {
             return;
         }
         if (getIndex(resume.getUuid()) != -1) {
-            System.out.println("ERROR Резюме с таким uuid " + resume.getUuid() + " уже существует");
+            System.out.println("ERROR Резюме с uuid = " + resume.getUuid() + " уже существует");
             return;
         }
         storage[size] = resume;
