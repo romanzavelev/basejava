@@ -21,7 +21,7 @@ public class ArrayStorage {
             System.out.println("ERROR Массив переполнен");
             return;
         }
-        if (getIndex(resume.getUuid()) == -1) {
+        if (getIndex(resume.getUuid()) != -1) {
             System.out.println("ERROR Резюме с таким uuid уже существует");
             return;
         }
