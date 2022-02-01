@@ -9,7 +9,7 @@ import java.io.InputStreamReader;
 
 /**
  * Interactive test for com.urise.webapp.storage.ArrayStorage implementation
- * (just run, no need to understand)
+ * (just run, no need to understand) 12
  */
 public class MainArray {
     private final static ArrayStorage ARRAY_STORAGE = new ArrayStorage();
