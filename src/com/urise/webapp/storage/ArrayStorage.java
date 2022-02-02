@@ -32,6 +32,7 @@ public class ArrayStorage {
     public void update(Resume resume) {
         int index = getIndex(resume.getUuid());
         if (index == -1) {
+            System.out.println("ERROR Резюме с uuid = " + resume.getUuid() + " не найдено");
             return;
         }
         storage[index] = resume;
@@ -40,6 +41,7 @@ public class ArrayStorage {
     public Resume get(String uuid) {
         int index = getIndex(uuid);
         if (index == -1) {
+            System.out.println("ERROR Резюме с uuid = " + uuid + " не найдено");
             return null;
         }
         return storage[index];
@@ -48,6 +50,7 @@ public class ArrayStorage {
     public void delete(String uuid) {
         int index = getIndex(uuid);
         if (index == -1) {
+            System.out.println("ERROR Резюме с uuid = " + uuid + " не найдено");
             return;
         }
         storage[index] = storage[size - 1];
@@ -72,7 +75,6 @@ public class ArrayStorage {
                 return i;
             }
         }
-        System.out.println("ERROR Резюме с uuid = " + uuid + " не найдено");
         return -1;
     }
 }
