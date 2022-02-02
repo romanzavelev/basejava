@@ -9,7 +9,7 @@ import java.io.InputStreamReader;
 
 /**
  * Interactive test for com.urise.webapp.storage.ArrayStorage implementation
- * (just run, no need to understand) 1
+ * (just run, no need to understand)
  */
 public class MainArray {
     private final static ArrayStorage ARRAY_STORAGE = new ArrayStorage();
@@ -72,5 +72,9 @@ public class MainArray {
             }
         }
         System.out.println("----------------------------");
+    }
+
+    private int getIndex() {
+        return 0;
     }
 }
