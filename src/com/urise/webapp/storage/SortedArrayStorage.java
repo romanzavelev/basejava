@@ -26,6 +26,16 @@ public class SortedArrayStorage extends AbstractArrayStorage{
     }
 
     @Override
+    protected void fillDeletedElement(int index) {
+
+    }
+
+    @Override
+    protected void insertElement(Resume r, int index) {
+
+    }
+
+    @Override
     public Resume[] getAll() {
         return new Resume[0];
     }
