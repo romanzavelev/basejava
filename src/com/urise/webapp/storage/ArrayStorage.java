@@ -8,8 +8,6 @@ import java.util.Arrays;
  * Array based storage for Resumes
  */
 public class ArrayStorage extends AbstractArrayStorage {
-    private final Resume[] storage = new Resume[10_000];
-    private int size;
 
     @Override
     protected void fillDeletedElement(int index) {
