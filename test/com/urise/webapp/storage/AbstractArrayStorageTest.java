@@ -112,8 +112,8 @@ public abstract class AbstractArrayStorageTest {
 
     @Test
     public void getAll() {
-        Resume[] standartArray = {RESUME_1, RESUME_2, RESUME_3};
+        Resume[] modelArray = {RESUME_1, RESUME_2, RESUME_3};
         Resume[] array = storage.getAll();
-        Assert.assertArrayEquals(standartArray, array);
+        Assert.assertArrayEquals(modelArray, array);
     }
 }
