@@ -29,7 +29,7 @@ public class ArrayStorage extends AbstractArrayStorage {
                 return i;
             }
         }
-        System.out.println("ERROR Резюме с uuid = " + uuid + " не найдено");
+    //    System.out.println("ERROR Резюме с uuid = " + uuid + " не найдено");
         return -1;
     }
 }
