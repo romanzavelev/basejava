@@ -52,11 +52,9 @@ public abstract class AbstractArrayStorageTest {
 
     @Test
     public void update() {
-        Resume oldResume = storage.get(UUID_2);
         Resume newResume = new Resume(UUID_2);
         storage.update(newResume);
-        assertEquals(oldResume, newResume);
-        assertNotSame(oldResume, newResume);
+        assertSame(newResume, storage.get(UUID_2));
     }
 
     @Test(expected = ExistStorageException.class)
@@ -71,7 +69,7 @@ public abstract class AbstractArrayStorageTest {
                 storage.save(new Resume());
             }
         } catch (StorageException se) {
-            Assert.fail("Переполнение произошло раньше времени");
+           fail("Переполнение произошло раньше времени");
         }
         storage.save(new Resume());
     }
@@ -81,7 +79,7 @@ public abstract class AbstractArrayStorageTest {
         int size = storage.size();
         Resume newResume = new Resume("uuid4");
         storage.save(newResume);
-        Assert.assertEquals(storage.get("uuid4"), newResume);
+        assertEquals(newResume, storage.get("uuid4"));
         assertEquals(size + 1, storage.size());
     }
 
@@ -100,9 +98,9 @@ public abstract class AbstractArrayStorageTest {
 
     @Test
     public void get() {
-        Resume r = storage.get(UUID_3);
-        String testUuid = r.getUuid();
-        Assert.assertEquals(UUID_3, testUuid);
+        Resume resume = storage.get(UUID_3);
+        Resume testResume = new Resume(UUID_3);
+        assertEquals(testResume, resume);
     }
 
     @Test(expected = NotExistStorageException.class)
@@ -112,8 +110,8 @@ public abstract class AbstractArrayStorageTest {
 
     @Test
     public void getAll() {
-        Resume[] modelArray = {RESUME_1, RESUME_2, RESUME_3};
-        Resume[] array = storage.getAll();
-        Assert.assertArrayEquals(modelArray, array);
+        Resume[] expectedArray = {RESUME_1, RESUME_2, RESUME_3};
+        Resume[] actualArray = storage.getAll();
+        assertArrayEquals(expectedArray, actualArray);
     }
 }
