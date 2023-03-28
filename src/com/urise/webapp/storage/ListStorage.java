@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class ListStorage extends AbstractStorage{
 
-    protected ArrayList<Resume> storage = new ArrayList<>(STORAGE_LIMIT);
+    protected ArrayList<Resume> storage = new ArrayList<>();
 
     public void clear() {
         storage.clear();
@@ -32,11 +32,8 @@ public class ListStorage extends AbstractStorage{
         int index = storage.indexOf(r);
         if (index >= 0) {
             throw new ExistStorageException(r.getUuid());
-        } else if (size >= STORAGE_LIMIT) {
-            throw new StorageException("Storage overflow", r.getUuid());
         } else {
             storage.add(r);
-            size++;
         }
     }
 
@@ -54,12 +51,11 @@ public class ListStorage extends AbstractStorage{
             throw new NotExistStorageException(uuid);
         } else {
             storage.remove(index);
-            size--;
         }
     }
 
     public Resume[] getAll() {
-        return storage.toArray(new Resume[size]);
+        return storage.toArray(new Resume[storage.size()]);
     }
 
     @Override
