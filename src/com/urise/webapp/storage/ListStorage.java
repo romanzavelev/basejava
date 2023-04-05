@@ -19,21 +19,42 @@ public class ListStorage extends AbstractStorage{
         return storage.size();
     }
 
+    @Override
+    protected void doSave(Resume r, Object searchKey) {
+        storage.add(r);
+    }
+
+    @Override
+    protected void doUpdate(Resume r, Object searchKey) {
+        storage.add((Integer) searchKey, r);
+    }
+
+    @Override
+    protected void doDelete(Object searchKey) {
+        storage.remove((Integer) searchKey);
+    }
+
+    @Override
+    protected Resume doGet(Object searchKey) {
+        return storage.get((Integer) searchKey);
+    }
+
+    @Override
+    protected boolean isExist(Object searchKey) {
+        return false;
+    }
+
+    @Override
+    protected Object getSearchKey(String uuid) {
+        return null;
+    }
+
     public void update(Resume r) {
         int index = storage.indexOf(r);
         if (index < 0) {
             throw new NotExistStorageException(r.getUuid());
         } else {
             storage.set(index, r);
-        }
-    }
-
-    public void save(Resume r) {
-        int index = storage.indexOf(r);
-        if (index >= 0) {
-            throw new ExistStorageException(r.getUuid());
-        } else {
-            storage.add(r);
         }
     }
 
@@ -45,20 +66,11 @@ public class ListStorage extends AbstractStorage{
         return storage.get(index);
     }
 
-    public void delete(String uuid) {
-        int index = getIndex(uuid);
-        if (index < 0) {
-            throw new NotExistStorageException(uuid);
-        } else {
-            storage.remove(index);
-        }
-    }
 
     public Resume[] getAll() {
         return storage.toArray(new Resume[storage.size()]);
     }
 
-    @Override
     protected int getIndex(String uuid) {
         for (Resume r : storage) {
             if (r.getUuid().equals(uuid)) {
