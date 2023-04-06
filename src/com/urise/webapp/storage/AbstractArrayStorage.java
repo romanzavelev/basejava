@@ -15,10 +15,26 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
         return size;
     }
 
+    protected abstract Integer getSearchKey(String uuid);
+
+    protected abstract void insertElement(Resume r, int index);
+
+    protected abstract void fillDeletedElement(Integer searchKey);
+
     @Override
     protected void doUpdate(Resume r, Object index) {
         storage[(Integer)  index] = r;
     }
+
+    @Override
+    protected void doDelete(Object searchKey) {
+        fillDeletedElement((Integer) searchKey);
+        storage[size -1] = null;
+
+        size--;
+    }
+
+
 
     @Override
     protected void doSave(Resume r, Object searchKey) {
@@ -40,11 +56,6 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
         return (Integer) index >= 0;
     }
 
-    protected abstract void fillDeletedElement(int index);
-
-    protected abstract void insertElement(Resume r, int index);
-
-
     public Resume[] getAll() {
         return Arrays.copyOfRange(storage, 0, size);
     }
@@ -54,5 +65,4 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
         return storage[(Integer) searchKey];
     }
 
-    protected abstract Integer getSearchKey(String uuid);
 }

@@ -13,7 +13,7 @@ public class ArrayStorageTest extends AbstractArrayStorageTest{
     }
 
     @Test(expected = StorageException.class)
-    public void OverflowSave() throws Exception {
+    public void OverflowSave()  {
         try {
             for (int i = 3; i < AbstractArrayStorage.STORAGE_LIMIT; i++) {
                 storage.save(new Resume());
