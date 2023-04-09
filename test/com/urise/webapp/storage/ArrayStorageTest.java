@@ -6,14 +6,14 @@ import org.junit.Test;
 
 import static org.junit.Assert.fail;
 
-public class ArrayStorageTest extends AbstractArrayStorageTest{
+public class ArrayStorageTest extends AbstractArrayStorageTest {
 
     public ArrayStorageTest() {
         super(new ArrayStorage());
     }
 
     @Test(expected = StorageException.class)
-    public void OverflowSave()  {
+    public void OverflowSave() {
         try {
             for (int i = 3; i < AbstractArrayStorage.STORAGE_LIMIT; i++) {
                 storage.save(new Resume());

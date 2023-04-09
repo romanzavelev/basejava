@@ -2,11 +2,12 @@ package com.urise.webapp.storage;
 
 import com.urise.webapp.model.Resume;
 
-import java.util.*;
+import java.util.Map;
+import java.util.TreeMap;
 
-public class MapStorage extends AbstractStorage{
+public class MapStorage extends AbstractStorage {
 
-    protected TreeMap<String,Resume> storage = new TreeMap<>();
+    protected Map<String, Resume> storage = new TreeMap<>();
 
     @Override
     protected void doSave(Resume r, Object searchKey) {

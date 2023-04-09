@@ -2,22 +2,13 @@ package com.urise.webapp.storage;
 
 import com.urise.webapp.exception.ExistStorageException;
 import com.urise.webapp.exception.NotExistStorageException;
-import com.urise.webapp.exception.StorageException;
 import com.urise.webapp.model.Resume;
 
 public abstract class AbstractStorage implements Storage {
 
-    protected abstract void doSave(Resume r, Object searchKey);
-    protected abstract void doUpdate(Resume r, Object searchKey);
-    protected abstract void doDelete(Object searchKey);
-    protected abstract Resume doGet(Object searchKey);
-    protected abstract  boolean isExist(Object searchKey);
-    protected abstract  Object getSearchKey(String uuid);
-
-
     public void update(Resume r) {
         Object searchKey = getExistedKey(r.getUuid());
-        doUpdate(r,searchKey);
+        doUpdate(r, searchKey);
     }
 
     public void save(Resume r) {
@@ -27,13 +18,14 @@ public abstract class AbstractStorage implements Storage {
 
     public void delete(String uuid) {
         Object searchKey = getExistedKey(uuid);
-            doDelete(searchKey);
+        doDelete(searchKey);
     }
 
     public Resume get(String uuid) {
         Object searchKey = getExistedKey(uuid);
         return doGet(searchKey);
     }
+
     private Object getExistedKey(String uuid) {
         Object searchKey = getSearchKey(uuid);
         if (!isExist(searchKey)) {
@@ -49,6 +41,18 @@ public abstract class AbstractStorage implements Storage {
         }
         return searchKey;
     }
+
+    protected abstract void doSave(Resume r, Object searchKey);
+
+    protected abstract void doUpdate(Resume r, Object searchKey);
+
+    protected abstract void doDelete(Object searchKey);
+
+    protected abstract Resume doGet(Object searchKey);
+
+    protected abstract boolean isExist(Object searchKey);
+
+    protected abstract Object getSearchKey(String uuid);
 
 
 }

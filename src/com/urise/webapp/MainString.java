@@ -1,11 +1,9 @@
 package com.urise.webapp;
 
-import java.util.Arrays;
-
 public class MainString {
     public static void main(String[] args) {
-       String[] stringArray = new String[]{"1", "2","4","5"};
-      // String result = "";
+        String[] stringArray = new String[]{"1", "2", "4", "5"};
+        // String result = "";
         StringBuilder sb = new StringBuilder();
         for (String str : stringArray) {
             //result += str + ", ";

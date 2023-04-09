@@ -4,13 +4,13 @@ import com.urise.webapp.model.Resume;
 
 import java.util.Arrays;
 
-public class SortedArrayStorage extends AbstractArrayStorage{
+public class SortedArrayStorage extends AbstractArrayStorage {
 
     @Override
     protected void insertElement(Resume r, int index) {
-       int insIdx = -index - 1;
-       System.arraycopy(storage, insIdx, storage, insIdx + 1, size - insIdx);
-       storage[insIdx] = r;
+        int insIdx = -index - 1;
+        System.arraycopy(storage, insIdx, storage, insIdx + 1, size - insIdx);
+        storage[insIdx] = r;
     }
 
     @Override
