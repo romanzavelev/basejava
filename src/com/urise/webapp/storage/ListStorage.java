@@ -67,8 +67,8 @@ public class ListStorage extends AbstractStorage {
     }
 
 
-    public Resume[] getAll() {
-        return storage.toArray(new Resume[storage.size()]);
+    public List<Resume> getAllSorted() {
+        return storage;
     }
 
     protected int getIndex(String uuid) {
