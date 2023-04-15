@@ -4,9 +4,10 @@ import com.urise.webapp.exception.StorageException;
 import com.urise.webapp.model.Resume;
 
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
-public abstract class AbstractArrayStorage extends AbstractStorage {
+public abstract class AbstractArrayStorage<getFullName> extends AbstractStorage {
     protected static final int STORAGE_LIMIT = 10000;
     protected int size = 0;
     protected Resume[] storage = new Resume[STORAGE_LIMIT];
@@ -50,19 +51,14 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
         return (Integer) index >= 0;
     }
 
-    class ResumeComparatorFullName implements Comparator<Resume> {
-        @Override
-        public int compare(Resume o1, Resume o2) {
-            return o1.getFullName().compareTo(o2.getFullName());
-        }
-    }
-
     public List<Resume> getAllSorted() {
         List list = new ArrayList<Resume>();
         for (int i = 0; i < size; i++) {
                 list.add(storage[i]);
         }
-        list.sort(new ResumeComparatorFullName());
+        list.sort(Comparator.comparing(
+                (Resume resume) -> resume.getFullName())
+                .thenComparing((Resume resume) -> resume.getUuid()));
         return list;
     }
 

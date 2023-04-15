@@ -4,6 +4,8 @@ import com.urise.webapp.exception.ExistStorageException;
 import com.urise.webapp.exception.NotExistStorageException;
 import com.urise.webapp.model.Resume;
 
+import java.util.List;
+
 public abstract class AbstractStorage implements Storage {
 
     public void update(Resume r) {
@@ -20,6 +22,8 @@ public abstract class AbstractStorage implements Storage {
         Object searchKey = getExistedKey(uuid);
         doDelete(searchKey);
     }
+
+
 
     public Resume get(String uuid) {
         Object searchKey = getExistedKey(uuid);

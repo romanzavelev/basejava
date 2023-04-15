@@ -4,7 +4,10 @@ import com.urise.webapp.exception.NotExistStorageException;
 import com.urise.webapp.model.Resume;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.function.Function;
 
 public class ListStorage extends AbstractStorage {
 
@@ -66,9 +69,15 @@ public class ListStorage extends AbstractStorage {
         return storage.get(index);
     }
 
-
     public List<Resume> getAllSorted() {
-        return storage;
+
+        List<String> b = new ArrayList<String>(storage.size());
+
+        List<Resume>  storageSorted = new ArrayList<Resume>(storage.size());
+        Collections.copy(storage, storageSorted);
+        storageSorted.sort(Comparator.comparing((Resume resume) -> resume.getFullName())
+        .thenComparing((Resume resume) -> resume.getUuid()));
+        return storageSorted;
     }
 
     protected int getIndex(String uuid) {
