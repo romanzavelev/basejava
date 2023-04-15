@@ -70,11 +70,8 @@ public class ListStorage extends AbstractStorage {
     }
 
     public List<Resume> getAllSorted() {
-
-        List<String> b = new ArrayList<String>(storage.size());
-
-        List<Resume>  storageSorted = new ArrayList<Resume>(storage.size());
-        Collections.copy(storage, storageSorted);
+        List<Resume>  storageSorted = new ArrayList<>();
+        Collections.copy(storageSorted, storage);
         storageSorted.sort(Comparator.comparing((Resume resume) -> resume.getFullName())
         .thenComparing((Resume resume) -> resume.getUuid()));
         return storageSorted;
