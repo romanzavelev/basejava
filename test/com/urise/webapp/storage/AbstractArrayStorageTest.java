@@ -29,15 +29,10 @@ public abstract class AbstractArrayStorageTest {
 
     @Before
     public void setUp() {
-          storage.clear();
-//        storage.save(new Resume(UUID_1,"Иванов Петр Алексеевич"));
-//        storage.save(new Resume(UUID_2, "Никонов Игорь Иванович"));
-//        storage.save(new Resume(UUID_3, "Медведев Николай Сергеевич"));
-
-
-        storage.save(RESUME_3);
+        storage.clear();
         storage.save(RESUME_1);
         storage.save(RESUME_2);
+        storage.save(RESUME_3);
     }
 
     @Test

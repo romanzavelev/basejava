@@ -4,10 +4,11 @@ import com.urise.webapp.model.Resume;
 
 import java.lang.reflect.Array;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class MapStorage extends AbstractStorage {
 
-    protected Map<String, Resume> storage = new TreeMap<>();
+    protected Map<String, Resume> storage = new HashMap<>();
 
     @Override
     protected void doSave(Resume r, Object searchKey) {
@@ -46,7 +47,9 @@ public class MapStorage extends AbstractStorage {
 
     @Override
     public List<Resume> getAllSorted() {
-        return new ArrayList<Resume>(storage.values());
+        List sortList = new ArrayList<Resume>(storage.values());
+        sortList.sort(Comparator.comparing((Resume r) -> r.getFullName()).thenComparing((Resume r) -> r.getUuid()));
+        return sortList;
     }
 
     @Override
