@@ -43,7 +43,7 @@ public abstract class AbstractStorage implements Storage {
         if (isExist(searchKey)) {
             throw new ExistStorageException(uuid);
         }
-        return searchKey;
+        return new Resume(uuid);
     }
 
     protected abstract void doSave(Resume r, Object searchKey);
