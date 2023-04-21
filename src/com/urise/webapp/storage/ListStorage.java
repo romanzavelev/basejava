@@ -42,6 +42,11 @@ public class ListStorage extends AbstractStorage {
     }
 
     @Override
+    public List<Resume> doGetAll() {
+        return storage;
+    }
+
+    @Override
     protected boolean isExist(Object searchKey) {
         return (Integer) searchKey > -1;
     }
@@ -71,8 +76,7 @@ public class ListStorage extends AbstractStorage {
 
     public List<Resume> getAllSorted() {
         List<Resume>  storageSorted = new ArrayList<Resume>(storage);
-        storageSorted.sort(Comparator.comparing((Resume resume) -> resume.getFullName())
-        .thenComparing((Resume resume) -> resume.getUuid()));
+        storageSorted.sort(COMPARATOR_RESUMES);
         return storageSorted;
     }
 

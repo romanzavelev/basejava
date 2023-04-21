@@ -29,9 +29,15 @@ public class MapResumeStorage extends AbstractStorage{
         storage.remove((Resume) searchKey);
     }
 
+
     @Override
     protected Resume doGet(Object searchKey) {
         return storage.get((Resume) searchKey);
+    }
+
+    @Override
+    public List<Resume> doGetAll() {
+        return new ArrayList<Resume>(storage.values());
     }
 
     @Override
@@ -49,12 +55,12 @@ public class MapResumeStorage extends AbstractStorage{
         storage.clear();
     }
 
-    @Override
-    public List<Resume> getAllSorted() {
-        List sortList = new ArrayList<Resume>(storage.values());
-        sortList.sort(Comparator.comparing((Resume r) -> r.getFullName()).thenComparing((Resume r) -> r.getUuid()));
-        return sortList;
-    }
+//    @Override
+//    public List<Resume> getAllSorted() {
+//        List sortList = new ArrayList<Resume>(storage.values());
+//        sortList.sort(COMPARATOR_RESUMES);
+//        return sortList;
+//    }
 
     @Override
     public int size() {

@@ -3,24 +3,16 @@ package com.urise.webapp.storage;
 import com.urise.webapp.model.Resume;
 
 import java.util.Arrays;
-import java.util.Comparator;
 
 public class SortedArrayStorage extends AbstractArrayStorage {
 
-   /* private static class ResumeComparator implements Comparator<Resume> {
-        @Override
-        public int compare(Resume o1, Resume o2) {
-            return o1.getUuid().compareTo(o2.getUuid());
-        }
-    }*/
-
-    private static final Comparator<Resume> RESUME_COMPARATOR = (o1, o2) -> o1.getUuid().compareTo(o2.getUuid());
-
     @Override
-    protected void insertElement(Resume r, int index) {
-        int insIdx = -index - 1;
-        System.arraycopy(storage, insIdx, storage, insIdx + 1, size - insIdx);
-        storage[insIdx] = r;
+    protected void insertElement(Resume resume) {
+        int insIdx = - Arrays.binarySearch(storage, 0, size, resume, COMPARATOR_RESUMES) - 1;
+        if (insIdx < size - 1) {
+            System.arraycopy(storage, insIdx, storage, insIdx + 1, size - insIdx);
+        }
+        storage[insIdx] = resume;
     }
 
     @Override
@@ -36,9 +28,13 @@ public class SortedArrayStorage extends AbstractArrayStorage {
     }
 
     @Override
-    protected Integer getSearchKey(String uuid) {
-        Resume searchKey = new Resume(uuid);
-        return Arrays.binarySearch(storage, 0, size, searchKey, RESUME_COMPARATOR);
+    protected Object getSearchKey(String uuid) {
+        for (int i = 0; i < size; i++) {
+            if (storage[i].getUuid().equals(uuid)) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     @Override

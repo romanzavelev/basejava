@@ -31,6 +31,11 @@ public class MapStorage extends AbstractStorage {
     }
 
     @Override
+    public List<Resume> doGetAll() {
+        return new ArrayList<Resume>(storage.values());
+    }
+
+    @Override
     protected boolean isExist(Object searchKey) {
         return storage.containsKey((String) searchKey);
     }
@@ -45,12 +50,12 @@ public class MapStorage extends AbstractStorage {
         storage.clear();
     }
 
-    @Override
-    public List<Resume> getAllSorted() {
-        List sortList = new ArrayList<Resume>(storage.values());
-        sortList.sort(Comparator.comparing((Resume r) -> r.getFullName()).thenComparing((Resume r) -> r.getUuid()));
-        return sortList;
-    }
+//    @Override
+//    public List<Resume> getAllSorted() {
+//        List sortList = new ArrayList<Resume>(storage.values());
+//        sortList.sort(Comparator.comparing((Resume r) -> r.getFullName()).thenComparing((Resume r) -> r.getUuid()));
+//        return sortList;
+//    }
 
     @Override
     public int size() {
