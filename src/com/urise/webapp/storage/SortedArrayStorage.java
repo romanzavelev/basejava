@@ -9,7 +9,7 @@ public class SortedArrayStorage extends AbstractArrayStorage {
     @Override
     protected void insertElement(Resume resume) {
         int insIdx = - Arrays.binarySearch(storage, 0, size, resume, COMPARATOR_RESUMES) - 1;
-        if (insIdx < size - 1) {
+        if (insIdx < size) {
             System.arraycopy(storage, insIdx, storage, insIdx + 1, size - insIdx);
         }
         storage[insIdx] = resume;

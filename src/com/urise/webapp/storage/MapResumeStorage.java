@@ -6,33 +6,27 @@ import java.util.*;
 
 public class MapResumeStorage extends AbstractStorage{
 
-    protected Map<Resume, Resume> storage = new HashMap<>();
+    protected Map<String, Resume> storage = new HashMap<>();
 
-    private Resume getResumeByUuid(String uuid) {
-        for (Resume r : storage.values()) {
-            if (r.getUuid() == uuid) return r;
-        }
-        return null;
-    }
     @Override
-    protected void doSave(Resume r, Object searchKey) {
-        storage.put((Resume) searchKey, r);
+    protected void doSave(Resume r, Object resume) {
+        storage.put(r.getUuid(), r);
     }
 
     @Override
-    protected void doUpdate(Resume r, Object searchKey) {
-        storage.put((Resume) searchKey, r);
+    protected void doUpdate(Resume r, Object resume) {
+        storage.put(r.getUuid(), r);
     }
 
     @Override
-    protected void doDelete(Object searchKey) {
-        storage.remove((Resume) searchKey);
+    protected void doDelete(Object resume) {
+        storage.remove(((Resume) resume).getUuid());
     }
 
 
     @Override
-    protected Resume doGet(Object searchKey) {
-        return storage.get((Resume) searchKey);
+    protected Resume doGet(Object resume) {
+        return storage.get(((Resume) resume).getUuid());
     }
 
     @Override
@@ -42,12 +36,12 @@ public class MapResumeStorage extends AbstractStorage{
 
     @Override
     protected boolean isExist(Object searchKey) {
-        return storage.containsKey((Resume) searchKey);
+        return searchKey != null;
     }
 
     @Override
     protected Object getSearchKey(String uuid) {
-        return getResumeByUuid(uuid);
+        return storage.get(uuid);
     }
 
     @Override
