@@ -5,25 +5,19 @@ import com.urise.webapp.model.Resume;
 
 import java.util.*;
 
-public abstract class AbstractArrayStorage<getFullName> extends AbstractStorage {
+public abstract class AbstractArrayStorage extends AbstractStorage {
     protected static final int STORAGE_LIMIT = 10000;
     protected int size = 0;
     protected Resume[] storage = new Resume[STORAGE_LIMIT];
 
     @Override
     public List<Resume> doGetAll() {
-        //List<Resume> resumes = new ArrayList<>(List.of(storage));
-        List list = new ArrayList<Resume>();
-       for (int i = 0; i < size; i++) {
-               list.add(storage[i]);
-       }
-        return list;
+        return new ArrayList<>(Arrays.asList(storage).subList(0, size));
     }
 
     public int size() {
         return size;
     }
-
 
     @Override
     protected void doUpdate(Resume r, Object index) {
@@ -57,23 +51,6 @@ public abstract class AbstractArrayStorage<getFullName> extends AbstractStorage 
     protected boolean isExist(Object index) {
         return (Integer) index >= 0;
     }
-//    @Override
-//    public List<Resume> getAllSorted() {
-//            List<Resume>  storageSorted = new ArrayList<Resume>(List.of(storage));
-//            storageSorted.sort(COMPARATOR_RESUMES);
-//            return storageSorted;
-
-
-//        List list = new ArrayList<Resume>();
-//        for (int i = 0; i < size; i++) {
-//                list.add(storage[i]);
-//        }
-//        list.sort(Comparator.comparing(
-//                (Resume resume) -> resume.getFullName())
-//                .thenComparing((Resume resume) -> resume.getUuid()));
-//        return list;
- //   }
-
 
     @Override
     protected Resume doGet(Object searchKey) {
@@ -82,9 +59,6 @@ public abstract class AbstractArrayStorage<getFullName> extends AbstractStorage 
 
     protected abstract void insertElement(Resume r);
 
-    //protected abstract Integer getSearchKey(Resume resume);
-
     protected abstract void fillDeletedElement(Integer searchKey);
-
 
 }

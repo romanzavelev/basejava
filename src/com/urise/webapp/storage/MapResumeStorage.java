@@ -26,12 +26,12 @@ public class MapResumeStorage extends AbstractStorage{
 
     @Override
     protected Resume doGet(Object resume) {
-        return storage.get(((Resume) resume).getUuid());
+        return (Resume) resume;
     }
 
     @Override
     public List<Resume> doGetAll() {
-        return new ArrayList<Resume>(storage.values());
+        return new ArrayList<>(storage.values());
     }
 
     @Override

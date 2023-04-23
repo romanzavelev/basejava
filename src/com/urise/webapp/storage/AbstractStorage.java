@@ -9,8 +9,9 @@ import java.util.List;
 
 public abstract class AbstractStorage implements Storage {
 
-    protected static Comparator COMPARATOR_RESUMES
-            = Comparator.comparing((Resume r) -> r.getFullName()).thenComparing((Resume r) -> r.getUuid());
+    protected static Comparator<Resume> COMPARATOR_RESUMES
+            = Comparator.comparing(Resume::getFullName).thenComparing(Resume::getUuid);
+
     public void update(Resume r) {
         Object searchKey = getExistedKey(r.getUuid());
         doUpdate(r, searchKey);
@@ -25,8 +26,6 @@ public abstract class AbstractStorage implements Storage {
         Object searchKey = getExistedKey(uuid);
         doDelete(searchKey);
     }
-
-
 
     public Resume get(String uuid) {
         Object searchKey = getExistedKey(uuid);
@@ -48,19 +47,25 @@ public abstract class AbstractStorage implements Storage {
         }
         return uuid;
     }
-    protected abstract void doSave(Resume r, Object searchKey);
-    protected abstract void doUpdate(Resume r, Object searchKey);
-    protected abstract void doDelete(Object searchKey);
 
-    protected abstract Resume doGet(Object searchKey);
-    public abstract List<Resume> doGetAll();
     public  List<Resume> getAllSorted() {
         List<Resume> storageList = doGetAll();
         storageList.sort(COMPARATOR_RESUMES);
         return storageList;
-    };
-    protected abstract boolean isExist(Object searchKey);
-    protected abstract Object getSearchKey(String uuid);
+    }
 
+    protected abstract void doSave(Resume r, Object searchKey);
+
+    protected abstract void doUpdate(Resume r, Object searchKey);
+
+    protected abstract void doDelete(Object searchKey);
+
+    protected abstract Resume doGet(Object searchKey);
+
+    public abstract List<Resume> doGetAll();
+
+    protected abstract boolean isExist(Object searchKey);
+
+    protected abstract Object getSearchKey(String uuid);
 
 }
