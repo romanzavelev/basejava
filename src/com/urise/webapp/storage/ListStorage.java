@@ -4,12 +4,9 @@ import com.urise.webapp.exception.NotExistStorageException;
 import com.urise.webapp.model.Resume;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
-import java.util.function.Function;
 
-public class ListStorage extends AbstractStorage {
+public class ListStorage extends AbstractStorage<Integer> {
 
     protected List<Resume> storage = new ArrayList<>();
 
@@ -22,23 +19,23 @@ public class ListStorage extends AbstractStorage {
     }
 
     @Override
-    protected void doSave(Resume r, Object searchKey) {
+    protected void doSave(Resume r, Integer searchKey) {
         storage.add(r);
     }
 
     @Override
-    protected void doUpdate(Resume r, Object searchKey) {
-        storage.add((Integer) searchKey, r);
+    protected void doUpdate(Resume r, Integer searchKey) {
+        storage.add(searchKey, r);
     }
 
     @Override
-    protected void doDelete(Object searchKey) {
-        storage.remove(((Integer) searchKey).intValue());
+    protected void doDelete(Integer searchKey) {
+        storage.remove(searchKey.intValue());
     }
 
     @Override
-    protected Resume doGet(Object searchKey) {
-        return storage.get((Integer) searchKey);
+    protected Resume doGet(Integer searchKey) {
+        return storage.get(searchKey);
     }
 
     @Override
@@ -47,12 +44,12 @@ public class ListStorage extends AbstractStorage {
     }
 
     @Override
-    protected boolean isExist(Object searchKey) {
-        return (Integer) searchKey > -1;
+    protected boolean isExist(Integer searchKey) {
+        return searchKey > -1;
     }
 
     @Override
-    protected Object getSearchKey(String uuid) {
+    protected Integer getSearchKey(String uuid) {
         return getIndex(uuid);
     }
 
@@ -75,7 +72,7 @@ public class ListStorage extends AbstractStorage {
     }
 
     public List<Resume> getAllSorted() {
-        List<Resume>  storageSorted = new ArrayList<Resume>(storage);
+        List<Resume>  storageSorted = new ArrayList<>(storage);
         storageSorted.sort(COMPARATOR_RESUMES);
         return storageSorted;
     }

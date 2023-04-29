@@ -2,46 +2,44 @@ package com.urise.webapp.storage;
 
 import com.urise.webapp.model.Resume;
 
-import java.lang.reflect.Array;
 import java.util.*;
-import java.util.stream.Collectors;
 
-public class MapStorage extends AbstractStorage {
+public class MapStorage extends AbstractStorage<String> {
 
     protected Map<String, Resume> storage = new HashMap<>();
 
     @Override
-    protected void doSave(Resume r, Object searchKey) {
-        storage.put((String) searchKey, r);
+    protected void doSave(Resume r, String searchKey) {
+        storage.put(searchKey, r);
     }
 
     @Override
-    protected void doUpdate(Resume r, Object searchKey) {
-        storage.put((String) searchKey, r);
+    protected void doUpdate(Resume r, String searchKey) {
+        storage.put(searchKey, r);
     }
 
     @Override
-    protected void doDelete(Object searchKey) {
-        storage.remove((String) searchKey);
+    protected void doDelete(String searchKey) {
+        storage.remove(searchKey);
     }
 
     @Override
-    protected Resume doGet(Object searchKey) {
-        return storage.get((String) searchKey);
+    protected Resume doGet(String searchKey) {
+        return storage.get(searchKey);
     }
 
     @Override
     public List<Resume> doGetAll() {
-        return new ArrayList<Resume>(storage.values());
+        return new ArrayList<>(storage.values());
     }
 
     @Override
-    protected boolean isExist(Object searchKey) {
-        return storage.containsKey((String) searchKey);
+    protected boolean isExist(String searchKey) {
+        return storage.containsKey(searchKey);
     }
 
     @Override
-    protected Object getSearchKey(String uuid) {
+    protected String getSearchKey(String uuid) {
         return uuid;
     }
 
@@ -49,13 +47,6 @@ public class MapStorage extends AbstractStorage {
     public void clear() {
         storage.clear();
     }
-
-//    @Override
-//    public List<Resume> getAllSorted() {
-//        List sortList = new ArrayList<Resume>(storage.values());
-//        sortList.sort(Comparator.comparing((Resume r) -> r.getFullName()).thenComparing((Resume r) -> r.getUuid()));
-//        return sortList;
-//    }
 
     @Override
     public int size() {

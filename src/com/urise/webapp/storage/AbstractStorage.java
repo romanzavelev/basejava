@@ -45,7 +45,7 @@ public abstract class AbstractStorage<SK> implements Storage {
         if (isExist(searchKey)) {
             throw new ExistStorageException(uuid);
         }
-        return (SK) uuid;
+        return searchKey;
     }
 
     public  List<Resume> getAllSorted() {

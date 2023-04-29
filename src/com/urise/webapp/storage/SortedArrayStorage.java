@@ -16,8 +16,8 @@ public class SortedArrayStorage extends AbstractArrayStorage {
     }
 
     @Override
-    protected void doDelete(Object searchKey) {
-        int index = (Integer) searchKey;
+    protected void doDelete(Integer searchKey) {
+        int index = searchKey;
         int numMoved = size - index - 1;
         if (numMoved > 0) {
             System.arraycopy(storage, index + 1, storage, index, numMoved);
@@ -28,7 +28,7 @@ public class SortedArrayStorage extends AbstractArrayStorage {
     }
 
     @Override
-    protected Object getSearchKey(String uuid) {
+    protected Integer getSearchKey(String uuid) {
         for (int i = 0; i < size; i++) {
             if (storage[i].getUuid().equals(uuid)) {
                 return i;

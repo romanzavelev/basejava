@@ -4,29 +4,28 @@ import com.urise.webapp.model.Resume;
 
 import java.util.*;
 
-public class MapResumeStorage extends AbstractStorage{
+public class MapResumeStorage extends AbstractStorage<Resume> {
 
     protected Map<String, Resume> storage = new HashMap<>();
 
     @Override
-    protected void doSave(Resume r, Object resume) {
+    protected void doSave(Resume r, Resume resume) {
         storage.put(r.getUuid(), r);
     }
 
     @Override
-    protected void doUpdate(Resume r, Object resume) {
+    protected void doUpdate(Resume r, Resume resume) {
         storage.put(r.getUuid(), r);
     }
 
     @Override
-    protected void doDelete(Object resume) {
-        storage.remove(((Resume) resume).getUuid());
+    protected void doDelete(Resume resume) {
+        storage.remove(resume.getUuid());
     }
 
-
     @Override
-    protected Resume doGet(Object resume) {
-        return (Resume) resume;
+    protected Resume doGet(Resume resume) {
+        return resume;
     }
 
     @Override
@@ -35,12 +34,12 @@ public class MapResumeStorage extends AbstractStorage{
     }
 
     @Override
-    protected boolean isExist(Object searchKey) {
+    protected boolean isExist(Resume searchKey) {
         return searchKey != null;
     }
 
     @Override
-    protected Object getSearchKey(String uuid) {
+    protected Resume getSearchKey(String uuid) {
         return storage.get(uuid);
     }
 
@@ -48,13 +47,6 @@ public class MapResumeStorage extends AbstractStorage{
     public void clear() {
         storage.clear();
     }
-
-//    @Override
-//    public List<Resume> getAllSorted() {
-//        List sortList = new ArrayList<Resume>(storage.values());
-//        sortList.sort(COMPARATOR_RESUMES);
-//        return sortList;
-//    }
 
     @Override
     public int size() {
