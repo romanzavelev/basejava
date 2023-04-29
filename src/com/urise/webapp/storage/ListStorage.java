@@ -53,7 +53,6 @@ public class ListStorage extends AbstractStorage<Integer> {
         return getIndex(uuid);
     }
 
-
     public void update(Resume r) {
         int index = storage.indexOf(r);
         if (index < 0) {
@@ -72,7 +71,7 @@ public class ListStorage extends AbstractStorage<Integer> {
     }
 
     public List<Resume> getAllSorted() {
-        List<Resume>  storageSorted = new ArrayList<>(storage);
+        List<Resume> storageSorted = new ArrayList<>(storage);
         storageSorted.sort(COMPARATOR_RESUMES);
         return storageSorted;
     }
