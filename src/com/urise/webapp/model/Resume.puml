@@ -1,0 +1,52 @@
+@startuml
+
+class Resume {
+   + uuid: String
+   + fullName: String
+   + contacts: List<Contact>
+   + texts: List<SectionText>
+   + histories: List<History>
+}
+
+class History {
+    + type: SectionType
+    + startDate: Date
+    + endDate: Date
+    + place: String
+    + role: String
+    + description: String
+    }
+
+class SectionText {
+        +type: SectionType
+        +items: String
+        }
+
+ class Contact {
+         +type: ContactType
+         +value: String
+           }
+
+enum ContactType {
+    EMAIL
+    PHONE
+    SKYPE
+}
+
+enum SectionType {
+    PERSONAL
+    OBJECTIVE
+    ACHIEVEMENT
+    QUALIFICATIONS
+    EXPERIENCE
+    EDUCATION
+    }
+
+Resume *--> SectionText
+Resume *--> History
+Resume *--> Contact
+Contact *--> ContactType
+History *--> SectionType
+SectionText *--> SectionType
+
+@enduml

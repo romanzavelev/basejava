@@ -1,5 +1,7 @@
 package com.urise.webapp.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -7,22 +9,50 @@ import java.util.UUID;
  */
 public class Resume {
 
-    // Unique identifier
     private final String uuid;
     private String fullName;
+    private List<Contact> contacts;
+    private List<SectionText> texts;
+    private List<History> histories;
 
     public Resume() {
         this(UUID.randomUUID().toString());
     }
-
     public Resume(String fullName) {
         this.uuid = UUID.randomUUID().toString();
         this.fullName = fullName;
     }
-
     public Resume(String uuid, String fullName) {
         this.uuid = uuid;
         this.fullName = fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public List<Contact> getContacts() {
+        return contacts;
+    }
+
+    public void setContacts(ArrayList<Contact> contacts) {
+        this.contacts = contacts;
+    }
+
+    public List<SectionText> getTexts() {
+        return texts;
+    }
+
+    public void setTexts(ArrayList<SectionText> texts) {
+        this.texts = texts;
+    }
+
+    public List<History> getHistories() {
+        return histories;
+    }
+
+    public void setHistories(ArrayList<History> histories) {
+        this.histories = histories;
     }
 
     public String getFullName() {
@@ -42,11 +72,6 @@ public class Resume {
     public int hashCode() {
         return uuid.hashCode();
     }
-
-   // @Override
-    //public int compareTo(Resume o) {
-    //    return uuid.compareTo(o.uuid);
-    //}
 
     @Override
     public boolean equals(Object o) {
