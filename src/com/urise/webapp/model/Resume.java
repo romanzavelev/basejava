@@ -1,8 +1,6 @@
 package com.urise.webapp.model;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * Initial resume class
@@ -11,8 +9,10 @@ public class Resume {
 
     private final String uuid;
     private String fullName;
-    private List<Contact> contacts;
-    private List<SectionText> texts;
+    private Map<ContactType, String> contacts = new EnumMap<>(ContactType.class);
+    private Map<SectionType, Section> sections = new EnumMap<>(SectionType.class);
+
+    private List<Section> texts;
     private List<History> histories;
 
     public Resume() {
@@ -29,30 +29,6 @@ public class Resume {
 
     public void setFullName(String fullName) {
         this.fullName = fullName;
-    }
-
-    public List<Contact> getContacts() {
-        return contacts;
-    }
-
-    public void setContacts(ArrayList<Contact> contacts) {
-        this.contacts = contacts;
-    }
-
-    public List<SectionText> getTexts() {
-        return texts;
-    }
-
-    public void setTexts(ArrayList<SectionText> texts) {
-        this.texts = texts;
-    }
-
-    public List<History> getHistories() {
-        return histories;
-    }
-
-    public void setHistories(ArrayList<History> histories) {
-        this.histories = histories;
     }
 
     public String getFullName() {

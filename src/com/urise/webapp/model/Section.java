@@ -1,6 +1,6 @@
 package com.urise.webapp.model;
 
-public class SectionText {
+public class Section {
     private SectionType type;
     private String items;
 
