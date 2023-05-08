@@ -2,7 +2,7 @@ package com.urise.webapp.model;
 
 import java.util.Date;
 
-public class History {
+public class Organization {
     private SectionType type;
     private Date startDate;
     private Date enDate;

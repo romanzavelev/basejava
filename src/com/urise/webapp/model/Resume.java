@@ -11,8 +11,15 @@ public class Resume {
     private String fullName;
     private Map<ContactType, String> contacts = new EnumMap<>(ContactType.class);
     private Map<SectionType, Section> sections = new EnumMap<>(SectionType.class);
-    private List<Section> texts;
-    private List<History> histories;
+
+    public String getContact(ContactType type) {
+        return contacts.get(type);
+    }
+
+    public Section getSection(SectionType type) {
+        return sections.get(type);
+    }
+
 
     public Resume() {
         this(UUID.randomUUID().toString());
