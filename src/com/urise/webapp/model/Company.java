@@ -2,13 +2,15 @@ package com.urise.webapp.model;
 
 import java.util.Date;
 
-public class Organization {
+public class Company {
+
+    private String homePage;
     private SectionType type;
     private Date startDate;
     private Date enDate;
     private String place;
     private String role;
-    private String items;
+    private String item;
 
     public SectionType getType() {
         return type;
@@ -50,11 +52,11 @@ public class Organization {
         this.role = role;
     }
 
-    public String getItems() {
-        return items;
+    public String getItem() {
+        return item;
     }
 
-    public void setItems(String items) {
-        this.items = items;
+    public void setItem(String item) {
+        this.item = item;
     }
 }
