@@ -11,7 +11,6 @@ public class Resume {
     private String fullName;
     private Map<ContactType, String> contacts = new EnumMap<>(ContactType.class);
     private Map<SectionType, Section> sections = new EnumMap<>(SectionType.class);
-
     private List<Section> texts;
     private List<History> histories;
 
