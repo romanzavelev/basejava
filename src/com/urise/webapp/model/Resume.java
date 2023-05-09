@@ -19,8 +19,7 @@ public class Resume {
     public AbstractSection getSection(SectionType type) {
         return sections.get(type);
     }
-
-
+    
     public Resume() {
         this(UUID.randomUUID().toString());
     }
