@@ -28,7 +28,7 @@ class TextSection {
 
 class CompanySection {
 
-   + companies: Company<List>
+   + companies: List<Company>
 
 }
 
