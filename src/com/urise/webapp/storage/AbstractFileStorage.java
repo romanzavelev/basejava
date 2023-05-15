@@ -8,8 +8,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
-import static javax.imageio.ImageIO.doWrite;
-
 public abstract class AbstractFileStorage extends AbstractStorage<File> {
 
     private File directory;
@@ -38,7 +36,7 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
         }
     }
 
-    protected abstract void doWrite(Resume r, File file);
+    protected abstract void doWrite(Resume r, File file) throws IOException;
 
     @Override
     protected void doDelete(File file) {
