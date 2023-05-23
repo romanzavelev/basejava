@@ -5,7 +5,7 @@ import java.util.Objects;
 public class TextSection extends AbstractSection {
     private final  String item;
 
-    TextSection(String item) {
+    public TextSection(String item) {
         this.item = item;
     }
 

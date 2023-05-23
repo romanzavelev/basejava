@@ -1,11 +1,15 @@
 package com.urise.webapp.model;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
 public class ListSection extends AbstractSection {
     private final List<String> items;
 
+    public ListSection(String...items){
+        this(List.of(items));
+    }
     ListSection(List<String> items) {
         this.items = items;
     }

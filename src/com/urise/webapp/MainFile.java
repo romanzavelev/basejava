@@ -24,6 +24,20 @@ public class MainFile {
             throw new RuntimeException(e);
         }
 
+        System.out.println("---------------------------------------------------");
+        readFiles(new File("."));
 
+
+    }
+
+    private static void readFiles(File dir) {
+        for (File file: dir.listFiles()) {
+            if (file.isDirectory()) {
+                readFiles(file);
+            } else {
+                System.out.println(file.getName());
+            }
+
+        }
     }
 }

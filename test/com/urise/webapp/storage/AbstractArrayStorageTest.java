@@ -2,7 +2,10 @@ package com.urise.webapp.storage;
 
 import com.urise.webapp.exception.ExistStorageException;
 import com.urise.webapp.exception.NotExistStorageException;
+import com.urise.webapp.model.ListSection;
 import com.urise.webapp.model.Resume;
+import com.urise.webapp.model.SectionType;
+import com.urise.webapp.model.TextSection;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,6 +25,14 @@ public abstract class AbstractArrayStorageTest {
     private static final Resume RESUME_1 = new Resume(UUID_1, "name1");
     private static final Resume RESUME_2 = new Resume(UUID_2, "name2");
     private static final Resume RESUME_3 = new Resume(UUID_3, "name3");
+
+    {
+        RESUME_1.addSection(SectionType.OBJECTIVE, new TextSection("Позиция1"));
+        RESUME_1.addSection(SectionType.PERSONAL, new TextSection("Персональная информация"));
+        RESUME_1.addSection(SectionType.ACHIEVEMENT, new ListSection("Достижение1","Достижение2","Достижение3"));
+        RESUME_1.addSection(SectionType.QUALIFICATIONS, new ListSection("Квалификация1","Квалификация2","Квалификация3"));
+        RESUME_1.addSection(SectionType.EXPERIENCE,
+    }
 
     public AbstractArrayStorageTest(Storage storage) {
         this.storage = storage;
