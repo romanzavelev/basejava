@@ -26,18 +26,16 @@ public class MainFile {
 
         System.out.println("---------------------------------------------------");
         readFiles(new File("."));
-
-
     }
 
     private static void readFiles(File dir) {
         for (File file: dir.listFiles()) {
             if (file.isDirectory()) {
+                System.out.println("Dir: " + file.getName());
                 readFiles(file);
             } else {
-                System.out.println(file.getName());
+                System.out.println("File: " + file.getName());
             }
-
         }
     }
 }
