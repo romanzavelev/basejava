@@ -2,16 +2,16 @@ package com.urise.webapp.storage;
 
 import com.urise.webapp.exception.ExistStorageException;
 import com.urise.webapp.exception.NotExistStorageException;
-import com.urise.webapp.model.ListSection;
-import com.urise.webapp.model.Resume;
-import com.urise.webapp.model.SectionType;
-import com.urise.webapp.model.TextSection;
+import com.urise.webapp.model.*;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import javax.xml.crypto.Data;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -27,11 +27,45 @@ public abstract class AbstractArrayStorageTest {
     private static final Resume RESUME_3 = new Resume(UUID_3, "name3");
 
     {
+        RESUME_1.addContact(ContactType.EMAIL,"mail1@mail.ru");
+        RESUME_1.addContact(ContactType.PHONE,"13413432432");
         RESUME_1.addSection(SectionType.OBJECTIVE, new TextSection("Позиция1"));
         RESUME_1.addSection(SectionType.PERSONAL, new TextSection("Персональная информация"));
         RESUME_1.addSection(SectionType.ACHIEVEMENT, new ListSection("Достижение1","Достижение2","Достижение3"));
         RESUME_1.addSection(SectionType.QUALIFICATIONS, new ListSection("Квалификация1","Квалификация2","Квалификация3"));
-        RESUME_1.addSection(SectionType.EXPERIENCE,
+        try {
+            RESUME_1.addSection(SectionType.EXPERIENCE,
+                    new CompanySection(
+                            new Company("company","company.com",
+                                    new Period(new Date(2016, 02, 11), new Date(2017, 02, 01), "programmer", "programmer"),
+                                    new Period(new Date(2017, 02, 11), new Date(2018, 02, 01), "programmer1", "programmer1")
+                            ),
+                            new Company("College","college.com",
+                                    new Period(new Date(2014, 02, 11), new Date(2015, 02, 01), "programmer", "programmer"),
+                                    new Period(new Date(2015, 02, 11), new Date(2016, 02, 01), "programmer1", "programmer1")
+                                    ))
+                    );
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        }
+
+        RESUME_2.addContact(ContactType.SKYPE, "skype1");
+        RESUME_2.addContact(ContactType.PHONE, "1234213432");
+        try {
+            RESUME_1.addSection(SectionType.EXPERIENCE,
+                    new CompanySection(
+                            new Company("company2","company2.com",
+                                    new Period(new Date(2016, 02, 11), new Date(2017, 02, 01), "programmer", "programmer"),
+                                    new Period(new Date(2017, 02, 11), new Date(2018, 02, 01), "programmer1", "programmer1")
+                            ),
+                            new Company("College","college.com",
+                                    new Period(new Date(2014, 02, 11), new Date(2015, 02, 01), "programmer", "programmer"),
+                                    new Period(new Date(2015, 02, 11), new Date(2016, 02, 01), "programmer1", "programmer1")
+                            ))
+            );
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public AbstractArrayStorageTest(Storage storage) {

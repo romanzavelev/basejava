@@ -40,6 +40,10 @@ public class Resume {
         sections.put(st, as);
     }
 
+    public void addContact(ContactType type, String item) {
+        contacts.put(type, item);
+    }
+
     public String getFullName() {
         return this.fullName;
     }
