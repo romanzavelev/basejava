@@ -49,18 +49,14 @@ public abstract class AbstractArrayStorageTest {
             throw new RuntimeException(e);
         }
 
-        RESUME_2.addContact(ContactType.SKYPE, "skype1");
-        RESUME_2.addContact(ContactType.PHONE, "1234213432");
+        RESUME_2.addContact(ContactType.SKYPE, "skype2");
+        RESUME_2.addContact(ContactType.PHONE, "12346663432");
         try {
-            RESUME_1.addSection(SectionType.EXPERIENCE,
+            RESUME_2.addSection(SectionType.EXPERIENCE,
                     new CompanySection(
                             new Company("company2","company2.com",
                                     new Period(new Date(2016, 02, 11), new Date(2017, 02, 01), "programmer", "programmer"),
                                     new Period(new Date(2017, 02, 11), new Date(2018, 02, 01), "programmer1", "programmer1")
-                            ),
-                            new Company("College","college.com",
-                                    new Period(new Date(2014, 02, 11), new Date(2015, 02, 01), "programmer", "programmer"),
-                                    new Period(new Date(2015, 02, 11), new Date(2016, 02, 01), "programmer1", "programmer1")
                             ))
             );
         } catch (MalformedURLException e) {

@@ -10,15 +10,15 @@ import java.util.List;
 public class Company {
 
     private String name;
-    private URL homePage;
+    private String homePage;
     private String place;
     private List<Period> periods = new ArrayList<>();
 
     public Company(String name, String url, Period... periods) throws MalformedURLException {
-        this(name, new URL(url), List.of(periods));
+        this(name, url, List.of(periods));
     }
 
-    public Company(String name, URL homePage, List<Period> periods) {
+    public Company(String name, String homePage, List<Period> periods) {
         this.homePage = homePage;
         this.periods = periods;
         this.name = name;
