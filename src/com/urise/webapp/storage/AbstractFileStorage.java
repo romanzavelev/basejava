@@ -22,8 +22,12 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
         this.directory = directory;
     }
     @Override
-    protected void doSave(Resume r, File file) {
-
+    protected void doSave(Resume r, File file)  {
+        try {
+            file.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -40,7 +44,7 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
 
     @Override
     protected void doDelete(File file) {
-
+        file.delete();
     }
 
     @Override
