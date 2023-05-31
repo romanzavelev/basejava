@@ -14,5 +14,17 @@ public class MainTestListObject {
             System.out.println(lo.get(i));
         }
 
+        System.out.println("----------------------------------------------");
+
+        ListOfIm lо1 = new ListOfIm<Object>();
+
+        lо1.add(123);
+        lо1.add("blah");
+        lо1.add(LocalDate.now());
+
+        for (int i = 0; i < lо1.light; i++) {
+            System.out.println(lо1.get(i));
+        }
+
     }
 }

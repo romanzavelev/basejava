@@ -8,5 +8,5 @@ public interface ListOf<T>{
         T get(int index);
 
         // return the  largest object in the list
-        //T max();
+        T max();
 }
