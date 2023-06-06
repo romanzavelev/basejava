@@ -1,6 +1,6 @@
 package com.urise.webapp.ListOfObject;
 
-public interface ListOf<T>{
+public interface ListOf<T extends Comparable<T>> {
     // add an object to the list
             void add(T obj);
 

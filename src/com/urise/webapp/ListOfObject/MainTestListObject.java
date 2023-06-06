@@ -16,15 +16,17 @@ public class MainTestListObject {
 
         System.out.println("----------------------------------------------");
 
-        ListOfIm lо1 = new ListOfIm<Object>();
+        ListOfIm lо1 = new ListOfIm<Integer>();
 
         lо1.add(123);
-        lо1.add("blah");
-        lо1.add(LocalDate.now());
+        lо1.add(858);
+        lо1.add(345);
 
         for (int i = 0; i < lо1.light; i++) {
             System.out.println(lо1.get(i));
         }
+
+        System.out.println(lо1.max());
 
     }
 }
