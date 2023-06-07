@@ -24,4 +24,14 @@ public class ListOfObjectsIm implements ListOfObjects {
     public int getLight() {
         return light;
     }
+
+    public Object max() {
+        Object maxT = listObject[0];
+        for (int i = 1; i < 10; i++) {
+          //  if (maxT.compareTo(listObject[i]) > 0) {
+                maxT = listObject[i];
+         //   }
+        }
+        return maxT;
+    }
 }
