@@ -5,7 +5,7 @@ import java.util.List;
 
 public class ListOfIm<T extends Comparable<T>> implements ListOf {
 
-    T[] mas = (T[]) new Object[10];
+    Object[] mas = new Object[10];
     int light = 0;
 
     @Override
@@ -16,16 +16,17 @@ public class ListOfIm<T extends Comparable<T>> implements ListOf {
 
     @Override
     public T get(int index) {
-        return mas[index];
+        return (T) mas[index];
     }
 
 
     @Override
     public T max() {
-        T maxT = mas[0];
-        for (int i = 1; i < 10; i++) {
-            if (mas[i].compareTo(maxT) > 0) {
-                maxT = mas[i];
+        T maxT = (T) mas[0];
+        for (int i = 1; i < light; i++) {
+            T tel = (T) mas[i];
+            if (tel.compareTo(maxT) > 0) {
+                maxT = (T) mas[i];
             }
         }
         return maxT;
