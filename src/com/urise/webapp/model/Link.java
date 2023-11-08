@@ -27,8 +27,7 @@ public class Link {
     public boolean equals(Object o) {
         if (this == o) return true;
         Link link = (Link) o;
-        if (!name.equals(link.name) || !name.equals(link.name)) return false;
-        return true;
+        return name.equals(link.name) && url.equals(link.url);
     }
 
     @Override

@@ -2,7 +2,7 @@ package com.urise.webapp.ListOfObject;
 
 public class ListOfObjectsIm implements ListOfObjects {
 
-    Object listObject[] = new Object[100];
+    Object[] listObject = new Object[100];
 
     int light = 0;
 
