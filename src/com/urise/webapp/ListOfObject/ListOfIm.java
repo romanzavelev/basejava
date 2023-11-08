@@ -1,16 +1,13 @@
 package com.urise.webapp.ListOfObject;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class ListOfIm<T extends Comparable<T>> implements ListOf {
+public class ListOfIm<T extends Comparable<T>> implements ListOf<T> {
 
     Object[] mas = new Object[10];
     int light = 0;
 
     @Override
-    public void add(Comparable obj) {
-        mas[light] = (T) obj;
+    public void add(T obj) {
+        mas[light] = obj;
         light++;
     }
 
@@ -22,11 +19,11 @@ public class ListOfIm<T extends Comparable<T>> implements ListOf {
 
     @Override
     public T max() {
-        T maxT = (T) mas[0];
+        T maxT = get(0);
         for (int i = 1; i < light; i++) {
-            T tel = (T) mas[i];
+            T tel = get(i);
             if (tel.compareTo(maxT) > 0) {
-                maxT = (T) mas[i];
+                maxT = get(i);
             }
         }
         return maxT;

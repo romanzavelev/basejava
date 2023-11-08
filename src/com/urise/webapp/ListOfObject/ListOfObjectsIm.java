@@ -1,9 +1,5 @@
 package com.urise.webapp.ListOfObject;
 
-import com.urise.webapp.ListOfObject.ListOfObjects;
-
-import java.util.List;
-
 public class ListOfObjectsIm implements ListOfObjects {
 
     Object listObject[] = new Object[100];
@@ -26,11 +22,15 @@ public class ListOfObjectsIm implements ListOfObjects {
     }
 
     public Object max() {
-        Object maxT = listObject[0];
+        Comparable maxT = (Comparable) listObject[0];
         for (int i = 1; i < 10; i++) {
-          //  if (maxT.compareTo(listObject[i]) > 0) {
-                maxT = listObject[i];
-         //   }
+            if ( listObject[i] instanceof Comparable ) {
+
+            }
+
+            if (maxT.compareTo(listObject[i]) > 0) {
+                maxT = (Comparable) listObject[i];
+            }
         }
         return maxT;
     }

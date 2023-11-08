@@ -12,13 +12,13 @@ public class Resume {
     private Map<ContactType, String> contacts = new EnumMap<>(ContactType.class);
     private Map<SectionType, AbstractSection> sections = new EnumMap<>(SectionType.class);
 
-    public String getContact(ContactType type) {
-        return contacts.get(type);
-    }
+//    public String getContact(ContactType type) {
+//        return contacts.get(type);
+//    }
 
-    public AbstractSection getSection(SectionType type) {
-        return sections.get(type);
-    }
+//    public AbstractSection getSection(SectionType type) {
+//        return sections.get(type);
+//    }
     
     public Resume() {
         this(UUID.randomUUID().toString());

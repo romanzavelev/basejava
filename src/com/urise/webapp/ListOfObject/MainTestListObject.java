@@ -1,6 +1,9 @@
 package com.urise.webapp.ListOfObject;
 
+import com.urise.webapp.model.Resume;
+
 import java.time.LocalDate;
+import java.util.Map;
 
 public class MainTestListObject {
     public static void main(String[] args) {
@@ -16,11 +19,15 @@ public class MainTestListObject {
 
         System.out.println("----------------------------------------------");
 
-        ListOfIm lо1 = new ListOfIm<Integer>();
+        ListOfIm<Integer> lо1 = new ListOfIm<>();
 
         lо1.add(123);
-        lо1.add(858);
+        //lо1.add("234");
         lо1.add(345);
+
+        Resume r  = new Resume();
+
+       // r.getClass().getAnnotations()
 
         for (int i = 0; i < lо1.light; i++) {
             System.out.println(lо1.get(i));
@@ -28,5 +35,9 @@ public class MainTestListObject {
 
         System.out.println(lо1.max());
 
+    }
+
+    public class A {
+        Integer i;
     }
 }
