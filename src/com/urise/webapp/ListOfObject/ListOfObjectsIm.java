@@ -24,9 +24,6 @@ public class ListOfObjectsIm implements ListOfObjects {
     public Object max() {
         Comparable maxT = (Comparable) listObject[0];
         for (int i = 1; i < 10; i++) {
-            if ( listObject[i] instanceof Comparable ) {
-
-            }
 
             if (maxT.compareTo(listObject[i]) > 0) {
                 maxT = (Comparable) listObject[i];
