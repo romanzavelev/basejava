@@ -6,7 +6,7 @@ import java.util.List;
 
 
 public class Company {
-    private Link link;
+    private final Link link;
     private String place;
     private List<Period> periods = new ArrayList<>();
 
@@ -23,7 +23,7 @@ public class Company {
     public String toString() {
         return "Company{" +
                 ", link=" + link +
-                ", place='" + place + '\'' +
+                ", place='" + link + '\'' +
                 ", periods=" + periods +
                 '}';
     }
